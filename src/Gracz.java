@@ -2,35 +2,35 @@ import java.util.List;
 
 public class Gracz {
 
-private int liczba_pól_na_planszy;
-private int iloœæ_pieniêdzy;
-private List<String> Lista_posiad³oœci;
+private int liczba_pol_na_planszy;
+private int ilosc_pieniedzy;
+private List<String> Lista_posiadlosci;
 private int nr_pozycji_na_planszy;
 
-public Gracz(int wartoœæ_startowa, int liczba_pól)
+public Gracz(int wartosc_startowa, int liczba_pol)
 {
-	iloœæ_pieniêdzy = wartoœæ_startowa;
+	ilosc_pieniedzy = wartosc_startowa;
 	nr_pozycji_na_planszy = 0;
-	liczba_pól_na_planszy = liczba_pól;
+	liczba_pol_na_planszy = liczba_pol;
 }
 
-public boolean dodaj_pieni¹dze(int iloœæ)
+public boolean dodaj_pieniadze(int ilosc)
 {
-	iloœæ_pieniêdzy += iloœæ;
+	ilosc_pieniedzy += ilosc;
 	return true;
 }
 
-public boolean zabierz_pieni¹dze(int iloœæ)
+public boolean zabierz_pieniadze(int ilosc)
 {
-	iloœæ_pieniêdzy -= iloœæ;
+	ilosc_pieniedzy -= ilosc;
 	return true;
 }
 
 public boolean dodaj_miasto(String miasto)
 {
-	if(!Lista_posiad³oœci.contains(miasto))
+	if(!Lista_posiadlosci.contains(miasto))
 	{
-		Lista_posiad³oœci.add(miasto);
+		Lista_posiadlosci.add(miasto);
 		return true;
 	}else return false;
 	
@@ -38,9 +38,9 @@ public boolean dodaj_miasto(String miasto)
 
 public boolean usun_miasto(String miasto)
 {
-	if(Lista_posiad³oœci.contains(miasto))
+	if(Lista_posiadlosci.contains(miasto))
 	{
-		Lista_posiad³oœci.remove(miasto);
+		Lista_posiadlosci.remove(miasto);
 		return true;
 	}else return false;
 }
@@ -48,17 +48,28 @@ public boolean usun_miasto(String miasto)
 public void wykonaj_ruch(int ruchy)
 {
 	nr_pozycji_na_planszy += ruchy;
-	nr_pozycji_na_planszy %= liczba_pól_na_planszy;
+	nr_pozycji_na_planszy %= liczba_pol_na_planszy;
+	System.out.printf(String.valueOf(ruchy) + " " +String.valueOf(nr_pozycji_na_planszy) + "\n");
 }
 
 public boolean czy_bankrut()
 {
-	return iloœæ_pieniêdzy < 0 && Lista_posiad³oœci.isEmpty();
+	return ilosc_pieniedzy < 0 && Lista_posiadlosci.isEmpty();
 }
 
 public boolean czy_wlasciciel(String miasto)
 {
-	 return Lista_posiad³oœci.contains(miasto);
+	 return Lista_posiadlosci.contains(miasto);
+}
+
+public int ile_pieniedzy()
+{
+	 return ilosc_pieniedzy;
+}
+
+public int aktualne_pole()
+{
+	 return nr_pozycji_na_planszy;
 }
 
 
