@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Gracz {
@@ -12,37 +13,34 @@ public Gracz(int wartosc_startowa, int liczba_pol)
 	ilosc_pieniedzy = wartosc_startowa;
 	nr_pozycji_na_planszy = 0;
 	liczba_pol_na_planszy = liczba_pol;
+	Lista_posiadlosci = new ArrayList<String>();;
 }
 
-public boolean dodaj_pieniadze(int ilosc)
+public void dodaj_pieniadze(int ilosc)
 {
 	ilosc_pieniedzy += ilosc;
-	return true;
 }
 
-public boolean zabierz_pieniadze(int ilosc)
+public void zabierz_pieniadze(int ilosc)
 {
 	ilosc_pieniedzy -= ilosc;
-	return true;
 }
 
-public boolean dodaj_miasto(String miasto)
+public void dodaj_miasto(String miasto)
 {
 	if(!Lista_posiadlosci.contains(miasto))
 	{
-		Lista_posiadlosci.add(miasto);
-		return true;
-	}else return false;
+		boolean b = Lista_posiadlosci.add(miasto);
+	}
 	
 }
 
-public boolean usun_miasto(String miasto)
+public void usun_miasto(String miasto)
 {
 	if(Lista_posiadlosci.contains(miasto))
 	{
-		Lista_posiadlosci.remove(miasto);
-		return true;
-	}else return false;
+		boolean b = Lista_posiadlosci.remove(miasto);
+	}
 }
 
 public void wykonaj_ruch(int ruchy)

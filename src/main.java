@@ -7,17 +7,22 @@ import javax.swing.JTextField;
 
 public class main {
 	public static void main(String[] args){
-		Gracz g = new Gracz(100,32);
-		kostka k = new kostka();
+		Gracz g1 = new Gracz(100,32);
+		Gracz g2 = new Gracz(100,32);
+		//kostka k = new kostka();
+		handel h = new handel();
+		//k.ustaw_aktualnego_gracza(g);
 		
-		k.ustaw_aktualnego_gracza(g);
-		
-		
+		h.ustaw_aktualnego_gracza(g1);
+		h.ustaw_gracza_do_handlu(g2);
 	    JFrame f = new JFrame("EuroBusiness");  
 	    
 	    JButton b1 = new JButton("Kostka");  
 	    JTextField pole_gracza = new JTextField();
 	    pole_gracza.setEditable(false);
+	    
+	    g1.dodaj_miasto("Berlin");
+	    g2.dodaj_miasto("Warszawa");
 	    
 	    b1.setBounds(150,250,200,100);  
 	    pole_gracza.setBounds(150,100,200,100);  
@@ -29,8 +34,9 @@ public class main {
 	    			public void actionPerformed(ActionEvent e){  
 	    				
 	    					
-	    					k.actionPerformed(e);
-	    					pole_gracza.setText("Pole: " + String.valueOf(g.aktualne_pole())); 
+	    					h.actionPerformed(e);
+	    					pole_gracza.setText("g1: " + g1.czy_wlasciciel("Warszawa") + " "  + g1.czy_wlasciciel("Berlin") + " " + g1.ile_pieniedzy() +"\n" 
+	    							+ "g2: " + g2.czy_wlasciciel("Warszawa") + " " + g2.czy_wlasciciel("Berlin") + " " + g2.ile_pieniedzy() + "\n"); 
 	    					
 	    				
 	    			}
