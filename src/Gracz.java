@@ -13,7 +13,7 @@ public Gracz(int wartosc_startowa, int liczba_pol)
 	ilosc_pieniedzy = wartosc_startowa;
 	nr_pozycji_na_planszy = 0;
 	liczba_pol_na_planszy = liczba_pol;
-	Lista_posiadlosci = new ArrayList<String>();;
+	Lista_posiadlosci = new ArrayList<String>();
 }
 
 public void dodaj_pieniadze(int ilosc)
@@ -69,7 +69,17 @@ public int aktualne_pole()
 {
 	 return nr_pozycji_na_planszy;
 }
-
+public boolean czy_mozna_budowac(String nazwa, Plansza p)
+{
+	int licznik = 0;
+		for (String s1 : Lista_posiadlosci) {
+			if(p.jaki_kolor(nazwa) == p.jaki_kolor(s1))
+			{
+				licznik++;
+			}
+		}
+		return (licznik == 3);
+}
 
 
 }
