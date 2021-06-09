@@ -19,7 +19,7 @@ public class Plansza {
 		
 		JPanel temp_panel;
 		temp_panel = new JPanel();
-		temp_panel.setSize(200, 100); 
+		temp_panel.setSize(200, 101); 
 		temp_panel.setLayout(null);
 		temp_panel.setOpaque(true);
 		temp_panel.setBorder(blackline);
@@ -116,9 +116,9 @@ public class Plansza {
 		JLabel cena;
 		cena = new JLabel(p.nazwa_pola(), JLabel.CENTER);
 		temp_panel.add(cena);
-		cena.setSize(200, 25);
+		cena.setSize(198, 25);
 		cena.setText(p.wartosc_pola() + "$");
-		cena.setLocation(0,75);
+		cena.setLocation(1,75);
 		cena.setOpaque(true);
 		
 		
