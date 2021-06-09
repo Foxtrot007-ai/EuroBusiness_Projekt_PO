@@ -1,8 +1,10 @@
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+import java.awt.event.ActionListener;
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class main {
@@ -21,8 +23,8 @@ public class main {
 	    JFrame f = new JFrame("EuroBusiness");  
 	    
 	    JButton b1 = new JButton("Kostka");  
-	    JTextField pole_gracza = new JTextField();
-	    pole_gracza.setEditable(false);
+	    
+	   
 	    
 	    g1.dodaj_miasto("Berlin");
 	    g1.dodaj_miasto("Bayern");
@@ -31,23 +33,26 @@ public class main {
 	    b.ustaw_aktualnego_gracza(g1);
 	    b.ustaw_plansze(p);
 	    
-	    
+	    System.out.printf(" "+ p.wartosc_pola("Berlin"));
+	
+	    JPanel pole = new JPanel();
+	    pole = p.panel_pola(0);
+		pole.setLocation(150, 100);
+		
 	    b1.setBounds(150,250,200,100);  
-	    pole_gracza.setBounds(150,100,200,100);  
 	    
-	    
+	   
 	    
 	    b1.addActionListener(
 	    		new ActionListener(){  
 	    			public void actionPerformed(ActionEvent e){  
 	    				
 	    					
-	    					b.actionPerformed(e);
-	    					//pole_gracza.setText("g1: " + g1.czy_wlasciciel("Warszawa") + " "  + g1.czy_wlasciciel("Berlin") + " " + g1.ile_pieniedzy() +"\n" 
-	    					//		+ "g2: " + g2.czy_wlasciciel("Warszawa") + " " + g2.czy_wlasciciel("Berlin") + " " + g2.ile_pieniedzy() + "\n"); 
-	    					pole_gracza.setText("g1: " + g1.czy_wlasciciel("Berlin") + " "  + g1.czy_wlasciciel("Bayern") + " " + g1.czy_wlasciciel("Drezno") +"\n" 
-	    	    			+ " " + p.ile_domków("Berlin") + " "  + p.ile_domków("Bayern") + " " + p.ile_domków("Drezno") +"\n" ); 
-	    				
+	    					 b.actionPerformed(e);
+	    					 
+	    					
+	    					
+	    					
 	    			}
 	    		});  
 	   
@@ -55,7 +60,7 @@ public class main {
 	  
 	    
 	    f.add(b1);
-	    f.add(pole_gracza);
+	    f.add(pole);
 	    f.setSize(500,500);  
 	    f.setLayout(null);  
 	    f.setVisible(true); 

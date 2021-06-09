@@ -4,12 +4,14 @@ public class Pole {
  protected String kolor;
  protected int ilosc_domkow;
  protected int wartosc;
- protected int wartosc_kary;
- public Pole(String nazwa, String kolor)
+ protected boolean typ; //false -> mieszkalny, true -> kara
+ public Pole(String nazwa, String kolor, int wartosc, boolean typ)
  {
 	 this.nazwa = nazwa;
 	 this.kolor = kolor;
-	 this.ilosc_domkow = 0;
+     this.ilosc_domkow = 4;
+	 this.wartosc = wartosc;
+	 this.typ = typ;
  }
  public String nazwa_pola()
  {
@@ -40,8 +42,5 @@ public class Pole {
  {
 	 ilosc_domkow--;
  }
- public int ile_do_zaplaty()
- {
-	return wartosc_kary;
- }
+
 }
