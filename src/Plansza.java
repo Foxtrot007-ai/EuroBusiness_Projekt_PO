@@ -104,7 +104,8 @@ public class Plansza {
 		
 		if(p.ilosc_domkow_pola() >= 4) 
 	    {
-			temp_panel.add(domek4);
+			
+			temp_panel.add(domek4, 1);
 			domek4.setLocation(155,45);
 			domek4.setSize(40, 25);
 			domek4.setOpaque(true);

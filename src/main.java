@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -11,7 +12,17 @@ public class main {
 	public static void main(String[] args){
 		Gracz g1 = new Gracz(10000,32);
 		Plansza p = new Plansza();
-		Budowanie b = new Budowanie();
+		/*JLabel dom = new JLabel();
+	    
+	    dom.setLocation(150, 50);
+	    dom.setSize(25, 25);
+	    dom.setOpaque(true);
+	    dom.setBackground(Color.green);
+	    dom.setVisible(false);*/
+		 JPanel pole = new JPanel();
+		    pole = p.panel_pola(0);
+			pole.setLocation(150, 100);
+		Budowanie b = new Budowanie(pole);
 		
 		
 		//kostka k = new kostka();
@@ -35,9 +46,7 @@ public class main {
 	    
 	    System.out.printf(" "+ p.wartosc_pola("Berlin"));
 	
-	    JPanel pole = new JPanel();
-	    pole = p.panel_pola(0);
-		pole.setLocation(150, 100);
+	   
 		
 	    b1.setBounds(150,250,200,100);  
 	    
@@ -48,7 +57,8 @@ public class main {
 	    			public void actionPerformed(ActionEvent e){  
 	    				
 	    					
-	    					 b.actionPerformed(e);
+	    					b.actionPerformed(e);
+	    					
 	    					 
 	    					
 	    					
@@ -58,7 +68,7 @@ public class main {
 	   
 	    
 	  
-	    
+	    //f.add(dom);
 	    f.add(b1);
 	    f.add(pole);
 	    f.setSize(500,500);  
