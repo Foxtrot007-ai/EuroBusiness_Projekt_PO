@@ -47,7 +47,6 @@ public void wykonaj_ruch(int ruchy)
 {
 	nr_pozycji_na_planszy += ruchy;
 	nr_pozycji_na_planszy %= liczba_pol_na_planszy;
-	System.out.printf(String.valueOf(ruchy) + " " +String.valueOf(nr_pozycji_na_planszy) + "\n");
 }
 
 public boolean czy_bankrut()

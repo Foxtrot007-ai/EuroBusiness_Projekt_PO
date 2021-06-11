@@ -16,7 +16,7 @@ public class Budowanie implements ActionListener{
 		private JButton b4;
 		private int max_domkow;
 		private String nazwa_miasta;
-		private JPanel domek;
+		//private JPanel domek;
 		
 		private JTextField miasto1;
 		private JTextField wartosc1;
@@ -25,11 +25,11 @@ public class Budowanie implements ActionListener{
 		private JTextField wartosc4;
 		private Gracz aktualny_gracz;
 		private Plansza plansza;
-		private boolean czy_koniec_budowania;
+		public boolean czy_koniec_budowania;
 			
-		public Budowanie(JPanel domek)
+		public Budowanie()
 		{
-			this.domek = domek;
+			//this.domek = domek;
 			max_domkow = 4;
 			f = new JFrame();
 			nazwa_miasta = "";		
@@ -120,9 +120,9 @@ public class Budowanie implements ActionListener{
 				public void actionPerformed(ActionEvent evt) {
 						
 							czy_koniec_budowania = true;
-							if(plansza.ile_domków(nazwa_miasta) > 0)
+							/*if(plansza.ile_domków(nazwa_miasta) > 0)
 								 domek.getComponent(1).setVisible(true);
-							else  domek.getComponent(1).setVisible(false);
+							else  domek.getComponent(1).setVisible(false);*/
 							f.dispose();
 						}
 	
@@ -169,10 +169,6 @@ public class Budowanie implements ActionListener{
 		}
 		
 		
-		public boolean czy_budowano()
-		{
-			return czy_koniec_budowania;
-		}
 		
 	}
 

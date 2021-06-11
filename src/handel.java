@@ -17,7 +17,10 @@ public class handel implements ActionListener{
 		private JTextField wartosc2;
 		private Gracz aktualny_gracz;
 		private Gracz drugi_gracz;
-		private boolean w_trakcie_handlu;
+		
+		public boolean koniec_handlu;	
+		private JButton nastepny;
+		
 			
 		public handel()
 		{
@@ -73,7 +76,7 @@ public class handel implements ActionListener{
 							
 							drugi_gracz.zabierz_pieniadze(Integer.valueOf(wartosc2.getText()));
 							aktualny_gracz.zabierz_pieniadze(Integer.valueOf(wartosc1.getText()));
-							
+							koniec_handlu = true;
 							f.dispose();
 						}
 	
@@ -102,6 +105,7 @@ public class handel implements ActionListener{
 		{
 			
 			f.setVisible(true);
+			koniec_handlu = false;
 			b1.setEnabled(true);
 					
 		}
@@ -117,10 +121,6 @@ public class handel implements ActionListener{
 			drugi_gracz = g;
 		}
 		
-		public boolean czy_handlowano()
-		{
-			return w_trakcie_handlu;
-		}
 		
 	}
 

@@ -26,7 +26,7 @@ public class Plansza {
 		
 		
 		JLabel tytul= new JLabel(p.nazwa_pola(), JLabel.CENTER);
-		temp_panel.add(tytul);
+		temp_panel.add(tytul, 0);
 		tytul.setSize(200, 40);
 		tytul.setLocation(0,0);
 		tytul.setVerticalAlignment(JLabel.TOP);
@@ -68,7 +68,7 @@ public class Plansza {
 		
 		if(p.ilosc_domkow_pola() >= 1) 
 	    {
-			temp_panel.add(domek1);
+			temp_panel.add(domek1, 1);
 			domek1.setLocation(5,45);
 			domek1.setSize(40, 25);
 			domek1.setOpaque(true);
@@ -80,7 +80,7 @@ public class Plansza {
 		
 		if(p.ilosc_domkow_pola() >= 2) 
 	    {
-			temp_panel.add(domek2);
+			temp_panel.add(domek2, 2);
 			domek2.setLocation(55,45);
 			domek2.setSize(40, 25);
 			domek2.setOpaque(true);
@@ -92,7 +92,7 @@ public class Plansza {
 		
 		if(p.ilosc_domkow_pola() >= 3) 
 	    {
-			temp_panel.add(domek3);
+			temp_panel.add(domek3, 3);
 			domek3.setLocation(105,45);
 			domek3.setSize(40, 25);
 			domek3.setOpaque(true);
@@ -105,7 +105,7 @@ public class Plansza {
 		if(p.ilosc_domkow_pola() >= 4) 
 	    {
 			
-			temp_panel.add(domek4, 1);
+			temp_panel.add(domek4, 4);
 			domek4.setLocation(155,45);
 			domek4.setSize(40, 25);
 			domek4.setOpaque(true);
@@ -116,7 +116,7 @@ public class Plansza {
 		
 		JLabel cena;
 		cena = new JLabel(p.nazwa_pola(), JLabel.CENTER);
-		temp_panel.add(cena);
+		temp_panel.add(cena, 5);
 		cena.setSize(198, 25);
 		cena.setText(p.wartosc_pola() + "$");
 		cena.setLocation(1,75);

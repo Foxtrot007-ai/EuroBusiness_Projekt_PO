@@ -14,10 +14,15 @@ public class kostka implements ActionListener{
 		private Gracz aktualny_gracz;
 		private int wylosowana;
 		private Random generator; 
-		private boolean koniec_losowania;
-			
-		public kostka()
+		public boolean koniec_losowania;
+		
+		private JButton MyButton;
+		private JButton NextButton;
+		
+		public kostka(JButton a, JButton b)
 		{
+			MyButton = a;
+			NextButton = b;
 			generator = new Random();
 			f = new JFrame();
 	          
@@ -56,6 +61,10 @@ public class kostka implements ActionListener{
 			{
 				public void actionPerformed(ActionEvent evt) {
 					koniec_losowania = true;
+					  
+						MyButton.setEnabled(false);
+						NextButton.setEnabled(true);
+					
 					f.dispose();
 							
 				}
