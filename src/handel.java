@@ -18,6 +18,8 @@ public class handel implements ActionListener{
 		private Gracz aktualny_gracz;
 		private Gracz drugi_gracz;
 		
+		
+		
 		public boolean koniec_handlu;	
 		private JButton nastepny;
 		

@@ -7,12 +7,14 @@ private int liczba_pol_na_planszy;
 private int ilosc_pieniedzy;
 private List<String> Lista_posiadlosci;
 private int nr_pozycji_na_planszy;
+private int index;
 
-public Gracz(int wartosc_startowa, int liczba_pol)
+public Gracz(int wartosc_startowa, int liczba_pol, int i)
 {
 	ilosc_pieniedzy = wartosc_startowa;
 	nr_pozycji_na_planszy = 0;
 	liczba_pol_na_planszy = liczba_pol;
+	index = i;
 	Lista_posiadlosci = new ArrayList<String>();
 }
 
@@ -79,6 +81,9 @@ public boolean czy_mozna_budowac(String nazwa, Plansza p)
 		}
 		return (licznik == 3);
 }
-
+public int numer_gracza()
+{
+	 return index;
+}
 
 }
