@@ -19,7 +19,7 @@ public class Plansza {
 		
 		JPanel temp_panel;
 		temp_panel = new JPanel();
-		temp_panel.setSize(200, 101); 
+		temp_panel.setSize(120, 60); 
 		temp_panel.setLayout(null);
 		temp_panel.setOpaque(true);
 		temp_panel.setBorder(blackline);
@@ -27,12 +27,12 @@ public class Plansza {
 		
 		JLabel tytul= new JLabel(p.nazwa_pola(), JLabel.CENTER);
 		temp_panel.add(tytul, 0);
-		tytul.setSize(200, 40);
-		tytul.setLocation(0,0);
+		tytul.setSize(118, 19);
+		tytul.setLocation(1,1);
 		tytul.setVerticalAlignment(JLabel.TOP);
 		tytul.setOpaque(true);
-		tytul.setForeground(Color.white);
-		tytul.setFont(new Font("Serif", Font.BOLD, 20));
+		tytul.setForeground(Color.black);
+		tytul.setFont(new Font("Serif", Font.BOLD, 12));
 		switch(p.kolor_pola())
 		{
 		case "zloty":
@@ -65,61 +65,46 @@ public class Plansza {
 		
 		JLabel domek1;
 		domek1 = new JLabel();
-		
-		if(p.ilosc_domkow_pola() >= 1) 
-	    {
-			temp_panel.add(domek1, 1);
-			domek1.setLocation(5,45);
-			domek1.setSize(40, 25);
-			domek1.setOpaque(true);
-			domek1.setBackground(Color.green);
-		}
+		temp_panel.add(domek1, 1);	
+		domek1.setLocation(5,25);
+		domek1.setSize(20, 15);
+		domek1.setOpaque(true);
+		domek1.setBackground(Color.green);
+		domek1.setVisible(false);
 		
 		JLabel domek2;
 		domek2 = new JLabel();
-		
-		if(p.ilosc_domkow_pola() >= 2) 
-	    {
-			temp_panel.add(domek2, 2);
-			domek2.setLocation(55,45);
-			domek2.setSize(40, 25);
-			domek2.setOpaque(true);
-			domek2.setBackground(Color.green);
-		}
+		temp_panel.add(domek2, 2);domek2.setLocation(35,25);
+		domek2.setSize(20, 15);
+		domek2.setOpaque(true);
+		domek2.setBackground(Color.green);
+		domek2.setVisible(false);
 		
 		JLabel domek3;
 		domek3 = new JLabel();
-		
-		if(p.ilosc_domkow_pola() >= 3) 
-	    {
-			temp_panel.add(domek3, 3);
-			domek3.setLocation(105,45);
-			domek3.setSize(40, 25);
-			domek3.setOpaque(true);
-			domek3.setBackground(Color.green);
-		}
+		temp_panel.add(domek3, 3);
+        domek3.setLocation(65,25);
+	    domek3.setSize(20, 15);
+		domek3.setOpaque(true);
+		domek3.setBackground(Color.green);
+		domek3.setVisible(false);
 		
 		JLabel domek4;
 		domek4 = new JLabel();
-		
-		if(p.ilosc_domkow_pola() >= 4) 
-	    {
-			
-			temp_panel.add(domek4, 4);
-			domek4.setLocation(155,45);
-			domek4.setSize(40, 25);
-			domek4.setOpaque(true);
-			domek4.setBackground(Color.green);
-			domek4.setOpaque(true);
-		}
+		temp_panel.add(domek4, 4);
+		domek4.setLocation(95,25);
+		domek4.setSize(20, 15);
+		domek4.setOpaque(true);
+		domek4.setBackground(Color.green);
+		domek4.setVisible(false);
 		
 		
 		JLabel cena;
 		cena = new JLabel(p.nazwa_pola(), JLabel.CENTER);
 		temp_panel.add(cena, 5);
-		cena.setSize(198, 25);
+		cena.setSize(118, 18);
 		cena.setText(p.wartosc_pola() + "$");
-		cena.setLocation(1,75);
+		cena.setLocation(1,40);
 		cena.setOpaque(true);
 		
 		
@@ -129,10 +114,52 @@ public class Plansza {
 	{
 		boolean temp;
 		plansza = new ArrayList<Pole>();
-		temp = plansza.add(new Pole("Berlin", "niebieski", 200 , false));
-		temp = plansza.add(new Pole("Bayern", "niebieski", 200, false));
-		temp = plansza.add(new Pole("Drezno", "niebieski", 200, false));
-		temp = plansza.add(new Pole("Zoo","szary", 200, true));
+		temp = plansza.add(new Pole("Start", "szary", 0, true));
+		temp = plansza.add(new Pole("Saloniki", "zloty", 120 , false));
+		temp = plansza.add(new Pole("-----", "szary", 0, true));
+		temp = plansza.add(new Pole("Ateny", "zloty", 120, false));
+		temp = plansza.add(new Pole("Parking","szary", 400, true));
+		temp = plansza.add(new Pole("Koleje", "szary", 500 , true));
+		temp = plansza.add(new Pole("Neapol", "czerwony", 200, false));
+		temp = plansza.add(new Pole("-----", "szary", 0, true));
+		temp = plansza.add(new Pole("Mediolan", "czerwony", 200 , false));
+		temp = plansza.add(new Pole("Rzym", "czerwony", 240, false));
+		
+		temp = plansza.add(new Pole("-----", "szary", 0, true));	
+		temp = plansza.add(new Pole("Barcelona", "niebieski", 280, false));
+		temp = plansza.add(new Pole("-----", "szary", 0, true));
+		temp = plansza.add(new Pole("Sewilla", "niebieski", 280, false));
+		temp = plansza.add(new Pole("Madryt", "niebieski", 320, false));
+		temp = plansza.add(new Pole("koleje", "szary", 500, true));
+		temp = plansza.add(new Pole("Liverpool", "pomaranczowy", 360, false));
+		temp = plansza.add(new Pole("-----", "szary", 0, true));
+		temp = plansza.add(new Pole("Glasgow", "pomaranczowy", 360, false));
+		temp = plansza.add(new Pole("Londyn", "pomaranczowy", 400, false));
+		
+		temp = plansza.add(new Pole("-----", "szary", 0, true));
+		temp = plansza.add(new Pole("Rotterdam", "zielony", 440, false));
+		temp = plansza.add(new Pole("-----", "szary", 0, true));
+		temp = plansza.add(new Pole("Bruksela", "zielony", 440, false));
+		temp = plansza.add(new Pole("Amsterdam", "zielony", 480, false));
+		temp = plansza.add(new Pole("koleje", "szary", 500, true));
+		temp = plansza.add(new Pole("Malmo", "fioletowy", 520, false));
+		temp = plansza.add(new Pole("Goterborg", "fioletowy", 520, false));
+		temp = plansza.add(new Pole("-----", "szary", 0, true));
+		temp = plansza.add(new Pole("Sztokholm", "fioletowy", 560, false));
+		
+		temp = plansza.add(new Pole("-----", "szary", 0, true));	
+		temp = plansza.add(new Pole("Frankfurt", "brazowy", 600, false));
+		temp = plansza.add(new Pole("Kolonia", "brazowy", 600, false));
+		temp = plansza.add(new Pole("-----", "szary", 0, true));
+		temp = plansza.add(new Pole("Bonn", "brazowy", 640, false));
+		temp = plansza.add(new Pole("koleje", "szary", 500, true));
+		temp = plansza.add(new Pole("-----", "szary", 0, false));
+		temp = plansza.add(new Pole("Innsbruck", "rozowy", 700, false));
+		temp = plansza.add(new Pole("-----", "szary", 0, true));
+		temp = plansza.add(new Pole("Wieden", "rozowy", 800, false));
+		
+		
+		
 		//tutaj inicjalizacja calej planszy
 	}
 	public String jaki_kolor(String nazwa)

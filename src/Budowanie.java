@@ -1,7 +1,4 @@
 
-
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -120,19 +117,13 @@ public class Budowanie implements ActionListener{
 				public void actionPerformed(ActionEvent evt) {
 						
 							czy_koniec_budowania = true;
-							/*if(plansza.ile_domków(nazwa_miasta) > 0)
-								 domek.getComponent(1).setVisible(true);
-							else  domek.getComponent(1).setVisible(false);*/
 							f.dispose();
 						}
 	
 							
 				
 			});
-			
-			
-		
-			
+						
 			f.add(b1);
 			f.add(b2);
 			f.add(b3);
@@ -153,8 +144,7 @@ public class Budowanie implements ActionListener{
 		{
 			czy_koniec_budowania = false;
 			f.setVisible(true);
-			b1.setEnabled(true);
-					
+			b1.setEnabled(true);					
 		}
 		
 		

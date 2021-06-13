@@ -9,7 +9,7 @@ public class Pole {
  {
 	 this.nazwa = nazwa;
 	 this.kolor = kolor;
-     this.ilosc_domkow = 4;
+     this.ilosc_domkow = 0;
 	 this.wartosc = wartosc;
 	 this.typ = typ;
  }
