@@ -6,7 +6,7 @@ import java.util.Random;
 
 
 public class Budowanie implements ActionListener{
-		private JFrame f;
+		private JPanel f;
 		private JButton b1;
 		private JButton b2;
 		private JButton b3;
@@ -23,12 +23,23 @@ public class Budowanie implements ActionListener{
 		private Gracz aktualny_gracz;
 		private Plansza plansza;
 		public boolean czy_koniec_budowania;
+		
+		private JButton aktualny;
+		private JButton nastepny;
 			
-		public Budowanie()
+		public JPanel pokaz_budowanie()
 		{
+			f.setLocation(700,150);
+			return f;
+		}
+		
+		public Budowanie(JButton b, JButton d)
+		{
+			aktualny = b;
+			nastepny = d;
 			//this.domek = domek;
 			max_domkow = 4;
-			f = new JFrame();
+			f = new JPanel();
 			nazwa_miasta = "";		
 			miasto1 = new JTextField();  
 			miasto1.setBounds(200,50, 100,20);  
@@ -117,7 +128,9 @@ public class Budowanie implements ActionListener{
 				public void actionPerformed(ActionEvent evt) {
 						
 							czy_koniec_budowania = true;
-							f.dispose();
+							aktualny.setEnabled(false);
+							nastepny.setEnabled(true);
+							f.setVisible(false);
 						}
 	
 							

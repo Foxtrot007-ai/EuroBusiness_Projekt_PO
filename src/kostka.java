@@ -6,7 +6,7 @@ import java.util.Random;
 
 
 public class kostka implements ActionListener{
-		private JFrame f;
+		private JPanel f;
 		private JButton b1;
 		private JButton b2;
 		private JTextField kostka1;
@@ -18,13 +18,17 @@ public class kostka implements ActionListener{
 		
 		private JButton MyButton;
 		private JButton NextButton;
-		
+		public JPanel pokaz_kostke()
+		{
+			f.setLocation(800, 200);
+			return f;
+		}
 		public kostka(JButton a, JButton b)
 		{
 			MyButton = a;
 			NextButton = b;
 			generator = new Random();
-			f = new JFrame();
+			f = new JPanel();
 	          
 		    kostka1 = new JTextField();  
 		    kostka1.setBounds(100,50, 100,20);  
@@ -65,7 +69,7 @@ public class kostka implements ActionListener{
 						MyButton.setEnabled(false);
 						NextButton.setEnabled(true);
 					
-					f.dispose();
+					f.setVisible(false);
 							
 				}
 			});

@@ -6,8 +6,9 @@ import java.util.Random;
 
 
 public class handel implements ActionListener{
-		private JFrame f;
+		private JPanel f;
 		private JButton b1;
+		private JButton b2;
 		private JTextField etykieta1;
 		private JTextField etykieta2;
 		private JTextField miasto1;
@@ -20,13 +21,20 @@ public class handel implements ActionListener{
 		
 		
 		public boolean koniec_handlu;	
+		private JButton aktualny;
 		private JButton nastepny;
 		
-			
-		public handel()
+		public JPanel pokaz_budowanie()
 		{
+			f.setLocation(700,200);
+			return f;
+		}
 			
-			f = new JFrame();
+		public handel(JButton h, JButton b)
+		{
+			aktualny = h;
+			nastepny = b;
+			f = new JPanel();
 	          
 			etykieta1 = new JTextField();  
 			etykieta1.setBounds(100,20, 100,20);
@@ -35,7 +43,7 @@ public class handel implements ActionListener{
 		
 			etykieta2 = new JTextField();  
 			etykieta2.setBounds(300,20, 100,20);
-			etykieta2.setText("Drugi gracz");
+			etykieta2.setText("Drugi_gracz");
 			etykieta2.setEditable(false);
 			
 			miasto1 = new JTextField();  
@@ -56,7 +64,7 @@ public class handel implements ActionListener{
 		    
 		    
 			b1 = new JButton("Akceptuj");
-			b1.setBounds(200,220,100, 40);
+			b1.setBounds(100,220,100, 40);
 			b1.setEnabled(true);
 			b1.addActionListener(new ActionListener()
 			{
@@ -77,18 +85,31 @@ public class handel implements ActionListener{
 							
 							drugi_gracz.zabierz_pieniadze(Integer.valueOf(wartosc2.getText()));
 							aktualny_gracz.zabierz_pieniadze(Integer.valueOf(wartosc1.getText()));
-							koniec_handlu = true;
-							f.dispose();
 						}
 	
 							
 				}
 			});
 			
+			b2 = new JButton("Dalej");
+			b2.setBounds(300,220,100, 40);
+			b2.setEnabled(true);
+			b2.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt) {
+						
+							koniec_handlu = true;
+							aktualny.setEnabled(false);
+							nastepny.setEnabled(true);
+							f.setVisible(false);
+		
+				}
+			});
 			
 		
 			
 			f.add(b1);
+			f.add(b2);
 			f.add(etykieta1);
 			f.add(etykieta2);
 			f.add(miasto1);
@@ -105,9 +126,17 @@ public class handel implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
 			
-			f.setVisible(true);
-			koniec_handlu = false;
-			b1.setEnabled(true);
+			
+			if(drugi_gracz.numer_gracza() != aktualny_gracz.numer_gracza()) 
+			{
+				f.setVisible(true);
+				etykieta1.setText("Gracz_nr " + aktualny_gracz.numer_gracza());
+				etykieta2.setText("Gracz_nr " + drugi_gracz.numer_gracza() );
+				koniec_handlu = false;
+				b1.setEnabled(true);
+			}
+			
+			
 					
 		}
 		

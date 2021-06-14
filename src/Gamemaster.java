@@ -21,11 +21,13 @@ public class Gamemaster {
 	private kostka k;
 	private Budowanie b;
 	private int liczba_pol;
+	private int aktualny_gracz;
 	
 	private JFrame f;
 	private JButton handel;
 	private JList wybor_gracza_do_handlu;
 	private JButton kostka;
+	private JPanel kostka_ekran;
 	private JButton Budowanie;
 	private JButton dalej;
 	private JLabel informacje;
@@ -103,6 +105,7 @@ public class Gamemaster {
 		f.setLayout(null);  
 		liczba_pol = 40;
 		
+		aktualny_gracz = 0;
 		gracz1 = new Gracz(3000,liczba_pol,1);
 		gracz2 = new Gracz(3000,liczba_pol,2);
 		gracz3 = new Gracz(3000,liczba_pol,3);
@@ -114,6 +117,8 @@ public class Gamemaster {
 	
 		kostka = new JButton("kostka");
 		handel = new JButton("Handel");
+		Budowanie = new JButton("Budowanie");
+		dalej = new JButton("dalej");
 		
 		final DefaultListModel<String> l1 = new DefaultListModel<>();  
         l1.addElement("Gracz 1");  
@@ -123,16 +128,17 @@ public class Gamemaster {
         wybor_gracza_do_handlu = new JList<>(l1);
         dane_gracza = new JLabel();
         
-		k = new kostka(kostka, handel);
+        //ustawianie kostki
+		k = new kostka(kostka, handel);	
 		k.ustaw_aktualnego_gracza(gracz1);
 		
-		
-		h = new handel();
+		//ustawianie handlu
+		h = new handel(handel, Budowanie);
 		h.ustaw_aktualnego_gracza(gracz1);
 		
 		
-		
-		b = new Budowanie();
+		//ustawianie budowania
+		b = new Budowanie(Budowanie, dalej);
 		b.ustaw_aktualnego_gracza(gracz1);
 		b.ustaw_plansze(p);
 		
@@ -141,11 +147,11 @@ public class Gamemaster {
 		wczytaj_JPanele_pola();
 		
 		
-		dane_gracza.setBounds(600, 120, 200, 100);
+		dane_gracza.setBounds(250, 120, 200, 100);
 		dane_gracza.setEnabled(false);
 		ustaw_dane_gracza(gracz1);
 		
-		kostka.setBounds(250,150,100, 40);
+		kostka.setBounds(610,150,100, 40);
 		kostka.setEnabled(true);
 		kostka.addActionListener(new ActionListener()
 		{
@@ -156,40 +162,49 @@ public class Gamemaster {
 		});
 		
 	
-		handel.setBounds(250,200,100, 40);
+		handel.setBounds(610,210,100, 40);
 		handel.setEnabled(false);
 		handel.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt) {
-				h.actionPerformed(evt);
-				if(h.koniec_handlu)
-				{   
-					handel.setEnabled(false);
-					Budowanie.setEnabled(true);
+				switch (wybor_gracza_do_handlu.getSelectedIndex()) {
+				case 0:
+					h.ustaw_gracza_do_handlu(gracz1);
+					break;
+				case 1:
+					h.ustaw_gracza_do_handlu(gracz2);
+					break;
+				case 2:
+					h.ustaw_gracza_do_handlu(gracz3);
+					break;
+				case 3:
+					h.ustaw_gracza_do_handlu(gracz4);
+					break;
+				default:
+					h.ustaw_gracza_do_handlu(gracz1);
+					break;
 				}
+				
+				if(wybor_gracza_do_handlu.getSelectedIndex() != aktualny_gracz)
+				h.actionPerformed(evt);
 			}
 		});
 		
-		wybor_gracza_do_handlu.setBounds(250,250,75,80);
-		wybor_gracza_do_handlu.setEnabled(false);
+		wybor_gracza_do_handlu.setBounds(610,270,75,80);
+		wybor_gracza_do_handlu.setEnabled(true);
 		
-		Budowanie = new JButton("Budowanie");
-		Budowanie.setBounds(360,150,100, 40);
+		
+		Budowanie.setBounds(610,390,100, 40);
 		Budowanie.setEnabled(false);
 		Budowanie.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt) {
 				b.actionPerformed(evt);
-				if(b.czy_koniec_budowania)
-				{   
-					Budowanie.setEnabled(false);
-					dalej.setEnabled(true);
-				}
 			}
 		});
 		
-		dalej = new JButton("dalej");
-		dalej.setBounds(360,200,100, 40);
+		
+		dalej.setBounds(610,450,100, 40);
 		dalej.setEnabled(false);
 		dalej.addActionListener(new ActionListener()
 		{
@@ -209,7 +224,9 @@ public class Gamemaster {
 		f.add(wybor_gracza_do_handlu);
 		f.add(kostka);
 		f.add(dalej);
-		
+		f.add(k.pokaz_kostke());
+		f.add(h.pokaz_budowanie());
+		f.add(b.pokaz_budowanie());
 		f.setVisible(true); 
 		
 	}
