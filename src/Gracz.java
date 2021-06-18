@@ -73,13 +73,16 @@ public int aktualne_pole()
 public boolean czy_mozna_budowac(String nazwa, Plansza p)
 {
 	int licznik = 0;
+	int limit;
+	if(p.jaki_kolor(nazwa) == "zloty" || p.jaki_kolor(nazwa) == "rozowy") limit = 2;
+	else limit = 3;
 		for (String s1 : Lista_posiadlosci) {
 			if(p.jaki_kolor(nazwa) == p.jaki_kolor(s1))
 			{
 				licznik++;
 			}
 		}
-		return (licznik == 3);
+		return (licznik == limit);
 }
 public int numer_gracza()
 {

@@ -44,12 +44,15 @@ public class Gamemaster {
 		
 	}
 	
-	private void wczytaj_JPanele_pola()
+	
+	private void ustaw_pola()
 	{
 		for(int i = 0; i < liczba_pol; i++)
 		{
 			pola.add(p.panel_pola(i));
-			f.add(pola.get(i));
+            f.add(pola.get(i));
+			
+			
 		}
 		pola.get(0).setLocation(1221, 620);
 		pola.get(1).setLocation(1099, 620);
@@ -111,7 +114,9 @@ public class Gamemaster {
 		gracz3 = new Gracz(3000,liczba_pol,3);
 		gracz4 = new Gracz(3000,liczba_pol,4);
 		
-		
+		gracz1.dodaj_miasto("Saloniki");
+		gracz1.dodaj_miasto("Ateny");
+		gracz1.dodaj_miasto("Neapol");
 		
 		p = new Plansza();
 	
@@ -141,11 +146,12 @@ public class Gamemaster {
 		b = new Budowanie(Budowanie, dalej);
 		b.ustaw_aktualnego_gracza(gracz1);
 		b.ustaw_plansze(p);
+	
 		
 		
 		pola = new ArrayList<JPanel>();
-		wczytaj_JPanele_pola();
-		
+		ustaw_pola();
+		b.ustaw_liste_pol(pola);
 		
 		dane_gracza.setBounds(250, 120, 200, 100);
 		dane_gracza.setEnabled(false);
@@ -200,6 +206,8 @@ public class Gamemaster {
 		{
 			public void actionPerformed(ActionEvent evt) {
 				b.actionPerformed(evt);
+				System.out.print(p.ile_domków("Saloniki"));
+				
 			}
 		});
 		
@@ -211,6 +219,7 @@ public class Gamemaster {
 			public void actionPerformed(ActionEvent evt) {
 				dalej.setEnabled(false);
 				kostka.setEnabled(true);
+				System.out.print(p.ile_domków("Saloniki"));
 			}
 		});
 		

@@ -189,6 +189,11 @@ public class Plansza {
 		return -1;
 	}
 	
+	public int ile_domków(int i)
+	{
+		return plansza.get(i).ilosc_domkow_pola();
+	}
+	
 	public void dodaj_domek(String nazwa)
 	{
 		for (Pole pole : plansza) {

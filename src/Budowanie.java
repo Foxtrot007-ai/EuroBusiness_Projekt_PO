@@ -2,6 +2,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 import java.util.Random;
 
 
@@ -10,7 +11,6 @@ public class Budowanie implements ActionListener{
 		private JButton b1;
 		private JButton b2;
 		private JButton b3;
-		private JButton b4;
 		private int max_domkow;
 		private String nazwa_miasta;
 		//private JPanel domek;
@@ -22,6 +22,7 @@ public class Budowanie implements ActionListener{
 		private JTextField wartosc4;
 		private Gracz aktualny_gracz;
 		private Plansza plansza;
+		private List<JPanel> pola;
 		public boolean czy_koniec_budowania;
 		
 		private JButton aktualny;
@@ -31,6 +32,15 @@ public class Budowanie implements ActionListener{
 		{
 			f.setLocation(700,150);
 			return f;
+		}
+		private void uaktualnij()
+		{
+			nazwa_miasta = miasto1.getText();
+			if(aktualny_gracz.czy_wlasciciel(nazwa_miasta)){
+				wartosc2.setText(String.valueOf(plansza.ile_domków(nazwa_miasta)));
+				wartosc4.setText(String.valueOf(plansza.wartosc_pola(nazwa_miasta)));
+			}
+			
 		}
 		
 		public Budowanie(JButton b, JButton d)
@@ -67,35 +77,24 @@ public class Budowanie implements ActionListener{
 			wartosc4.setEditable(false);
 		    
 		    
-			b1 = new JButton("Uaktualnij");
-			b1.setBounds(50,300,100, 40);
+			
+
+			b1 = new JButton("Sprzedaj");
+			b1.setBounds(200,300,100, 40);
 			b1.setEnabled(true);
 			b1.addActionListener(new ActionListener()
 			{
-				public void actionPerformed(ActionEvent evt) {
-					
-					nazwa_miasta = miasto1.getText();
-						if(aktualny_gracz.czy_wlasciciel(nazwa_miasta)){
-							wartosc2.setText(String.valueOf(plansza.ile_domków(nazwa_miasta)));
-							wartosc4.setText(String.valueOf(plansza.wartosc_pola(nazwa_miasta)));
-						}
-	
-				}		
 				
-			});
-
-			b2 = new JButton("Sprzedaj");
-			b2.setBounds(200,300,100, 40);
-			b2.setEnabled(true);
-			b2.addActionListener(new ActionListener()
-			{
 				public void actionPerformed(ActionEvent evt) {
+					uaktualnij();
 					if(aktualny_gracz.czy_wlasciciel(nazwa_miasta)
 					   && (plansza.ile_domków(nazwa_miasta) > 0)
 					   && aktualny_gracz.czy_mozna_budowac(nazwa_miasta, plansza)){
 						aktualny_gracz.dodaj_pieniadze(plansza.wartosc_pola(nazwa_miasta));
 						plansza.usun_domek(nazwa_miasta);
 					}
+					uaktualnij();
+					
 							
 				}
 	
@@ -103,27 +102,29 @@ public class Budowanie implements ActionListener{
 				
 			});
 			
-			b3 = new JButton("Kup");
-			b3.setBounds(350,300,100, 40);
-			b3.setEnabled(true);
-			b3.addActionListener(new ActionListener()
+			b2 = new JButton("Kup");
+			b2.setBounds(350,300,100, 40);
+			b2.setEnabled(true);
+			b2.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt) {
+					uaktualnij();
 					if(aktualny_gracz.czy_wlasciciel(nazwa_miasta)
 					   && (plansza.ile_domków(nazwa_miasta) <= max_domkow)
 					   && aktualny_gracz.czy_mozna_budowac(nazwa_miasta, plansza)
 					   && aktualny_gracz.ile_pieniedzy() >= plansza.wartosc_pola(nazwa_miasta) ){
 								aktualny_gracz.zabierz_pieniadze(plansza.wartosc_pola(nazwa_miasta));
 								plansza.dodaj_domek(nazwa_miasta);
-							}					
+							}		
+					uaktualnij();
 				}
 				
 			});
 			
-			b4 = new JButton("Koniec");
-			b4.setBounds(200,350,100, 40);
-			b4.setEnabled(true);
-			b4.addActionListener(new ActionListener()
+			b3 = new JButton("Koniec");
+			b3.setBounds(200,350,100, 40);
+			b3.setEnabled(true);
+			b3.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt) {
 						
@@ -131,16 +132,18 @@ public class Budowanie implements ActionListener{
 							aktualny.setEnabled(false);
 							nastepny.setEnabled(true);
 							f.setVisible(false);
+							System.out.print(plansza.ile_domków("Saloniki"));
+							uaktualnij_pola();
 						}
 	
 							
 				
 			});
 						
+
 			f.add(b1);
 			f.add(b2);
 			f.add(b3);
-			f.add(b4);
 			f.add(miasto1);
 			f.add(wartosc1);
 			f.add(wartosc2);
@@ -157,7 +160,7 @@ public class Budowanie implements ActionListener{
 		{
 			czy_koniec_budowania = false;
 			f.setVisible(true);
-			b1.setEnabled(true);					
+			uaktualnij();
 		}
 		
 		
@@ -170,6 +173,29 @@ public class Budowanie implements ActionListener{
 		{
 			plansza = p;
 		}
+		public void ustaw_liste_pol(List<JPanel> p)
+		{
+			
+			pola = p;
+		}
+		
+		private void uaktualnij_pola()
+		{
+			for (int i = 0; i < 40; i++) {
+				if(plansza.ile_domków(i) >= 1)	pola.get(i).getComponent(1).setVisible(true);
+				else pola.get(i).getComponent(1).setVisible(false);
+				
+				if(plansza.ile_domków(i) >= 2)	pola.get(i).getComponent(2).setVisible(true);
+				else pola.get(i).getComponent(2).setVisible(false);
+				
+				if(plansza.ile_domków(i) >= 3)	pola.get(i).getComponent(3).setVisible(true);
+				else pola.get(i).getComponent(3).setVisible(false);
+				
+				if(plansza.ile_domków(i) >= 4)	pola.get(i).getComponent(4).setVisible(true);
+				else pola.get(i).getComponent(4).setVisible(false);
+			}
+		}
+		
 		
 		
 		
