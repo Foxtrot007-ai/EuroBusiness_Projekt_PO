@@ -16,6 +16,7 @@ public class Gamemaster {
 	private Plansza p;
 	private Gracz gracze[];
 	private Informacje info;
+	private Decyzja d;
 	private kostka k;
 	private Budowanie b;
 	private int liczba_pol;
@@ -26,6 +27,7 @@ public class Gamemaster {
 	private JList wybor_gracza_do_handlu;
 	private JButton kostka;
 	private JPanel kostka_ekran;
+	private JButton decyzja;
 	private JButton Budowanie;
 	private JButton dalej;
 
@@ -117,6 +119,7 @@ public class Gamemaster {
 		p = new Plansza();
 	
 		kostka = new JButton("kostka");
+		decyzja = new JButton("decyzja");
 		handel = new JButton("Handel");
 		Budowanie = new JButton("Budowanie");
 		dalej = new JButton("dalej");
@@ -133,10 +136,16 @@ public class Gamemaster {
       	info.ustaw_tablice_graczy(gracze);
       	info.uaktualnij_informacje();
       	
+      	
         //ustawianie kostki
-		k = new kostka(kostka, handel);	
+		k = new kostka(kostka, decyzja);	
 		k.ustaw_aktualnego_gracza(gracze[0]);
 		k.ustaw_informacje(info);
+		
+		
+		//ustawianie handlu
+		d = new Decyzja(decyzja, handel ,info, p, gracze);
+		d.ustaw_aktualnego_gracza(gracze[0]);
 		
 		//ustawianie handlu
 		h = new handel(handel, Budowanie);
@@ -158,7 +167,7 @@ public class Gamemaster {
 		
 		System.out.print(gracze[0].lista_wlasnosci());
 		
-		kostka.setBounds(610,150,100, 40);
+		kostka.setBounds(610,90,100, 40);
 		kostka.setEnabled(true);
 		kostka.addActionListener(new ActionListener()
 		{
@@ -168,6 +177,15 @@ public class Gamemaster {
 			}
 		});
 		
+		decyzja.setBounds(610,150,100, 40);
+		decyzja.setEnabled(false);
+		decyzja.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent evt) {
+				d.actionPerformed(evt);
+
+			}
+		});
 	
 		handel.setBounds(610,210,100, 40);
 		handel.setEnabled(false);
@@ -234,9 +252,11 @@ public class Gamemaster {
 		f.add(wybor_gracza_do_handlu);
 		f.add(kostka);
 		f.add(dalej);
+		f.add(decyzja);
 		f.add(k.pokaz_kostke());
 		f.add(h.pokaz_budowanie());
 		f.add(b.pokaz_budowanie());
+		f.add(d.pokaz_decyzje());
 		f.add(info.pokaz_informacje());
 		f.setVisible(true); 
 		

@@ -211,4 +211,9 @@ public class Plansza {
 		}
 	}
 	
+	public String nazwa_pola(int i)
+	{
+		return plansza.get(i).nazwa_pola();
+	}
+	
 }
