@@ -14,10 +14,8 @@ import javax.swing.JTextField;
 public class Gamemaster {
 	private handel h;
 	private Plansza p;
-	private Gracz gracz1;
-	private Gracz gracz2;
-	private Gracz gracz3;
-	private Gracz gracz4;
+	private Gracz gracze[];
+	private Informacje info;
 	private kostka k;
 	private Budowanie b;
 	private int liczba_pol;
@@ -30,8 +28,8 @@ public class Gamemaster {
 	private JPanel kostka_ekran;
 	private JButton Budowanie;
 	private JButton dalej;
-	private JLabel informacje;
-	private JLabel dane_gracza;
+
+
 	private List<JPanel> pola;
 	private boolean czy_rzut_kostka;
 	private boolean czy_handel;
@@ -39,10 +37,7 @@ public class Gamemaster {
 	
 	private List<JPanel> panele_pol;
 	
-	private void uaktualnij_dane_gracza()
-	{
-		
-	}
+	
 	
 	
 	private void ustaw_pola()
@@ -109,14 +104,15 @@ public class Gamemaster {
 		liczba_pol = 40;
 		
 		aktualny_gracz = 0;
-		gracz1 = new Gracz(3000,liczba_pol,1);
-		gracz2 = new Gracz(3000,liczba_pol,2);
-		gracz3 = new Gracz(3000,liczba_pol,3);
-		gracz4 = new Gracz(3000,liczba_pol,4);
+		gracze = new Gracz[4];
+		gracze[0] = new Gracz(3000,liczba_pol,1);
+		gracze[1] = new Gracz(3000,liczba_pol,2);
+		gracze[2] = new Gracz(3000,liczba_pol,3);
+		gracze[3] = new Gracz(3000,liczba_pol,4);
 		
-		gracz1.dodaj_miasto("Saloniki");
-		gracz1.dodaj_miasto("Ateny");
-		gracz1.dodaj_miasto("Neapol");
+		gracze[0].dodaj_miasto("Saloniki");
+		gracze[0].dodaj_miasto("Ateny");
+		gracze[0].dodaj_miasto("Neapol");
 		
 		p = new Plansza();
 	
@@ -131,21 +127,28 @@ public class Gamemaster {
         l1.addElement("Gracz 3");  
         l1.addElement("Gracz 4");  
         wybor_gracza_do_handlu = new JList<>(l1);
-        dane_gracza = new JLabel();
-        
+       
+        //ustawienia inforamcji
+        info = new Informacje();
+      	info.ustaw_tablice_graczy(gracze);
+      	info.uaktualnij_informacje();
+      	
         //ustawianie kostki
 		k = new kostka(kostka, handel);	
-		k.ustaw_aktualnego_gracza(gracz1);
+		k.ustaw_aktualnego_gracza(gracze[0]);
+		k.ustaw_informacje(info);
 		
 		//ustawianie handlu
 		h = new handel(handel, Budowanie);
-		h.ustaw_aktualnego_gracza(gracz1);
+		h.ustaw_aktualnego_gracza(gracze[0]);
+		h.ustaw_informacje(info);
 		
 		
 		//ustawianie budowania
 		b = new Budowanie(Budowanie, dalej);
-		b.ustaw_aktualnego_gracza(gracz1);
+		b.ustaw_aktualnego_gracza(gracze[0]);
 		b.ustaw_plansze(p);
+		b.ustaw_informacje(info);
 	
 		
 		
@@ -153,9 +156,7 @@ public class Gamemaster {
 		ustaw_pola();
 		b.ustaw_liste_pol(pola);
 		
-		dane_gracza.setBounds(250, 120, 200, 100);
-		dane_gracza.setEnabled(false);
-		ustaw_dane_gracza(gracz1);
+		System.out.print(gracze[0].lista_wlasnosci());
 		
 		kostka.setBounds(610,150,100, 40);
 		kostka.setEnabled(true);
@@ -175,19 +176,19 @@ public class Gamemaster {
 			public void actionPerformed(ActionEvent evt) {
 				switch (wybor_gracza_do_handlu.getSelectedIndex()) {
 				case 0:
-					h.ustaw_gracza_do_handlu(gracz1);
+					h.ustaw_gracza_do_handlu(gracze[0]);
 					break;
 				case 1:
-					h.ustaw_gracza_do_handlu(gracz2);
+					h.ustaw_gracza_do_handlu(gracze[1]);
 					break;
 				case 2:
-					h.ustaw_gracza_do_handlu(gracz3);
+					h.ustaw_gracza_do_handlu(gracze[2]);
 					break;
 				case 3:
-					h.ustaw_gracza_do_handlu(gracz4);
+					h.ustaw_gracza_do_handlu(gracze[3]);
 					break;
 				default:
-					h.ustaw_gracza_do_handlu(gracz1);
+					h.ustaw_gracza_do_handlu(gracze[0]);
 					break;
 				}
 				
@@ -220,6 +221,7 @@ public class Gamemaster {
 				dalej.setEnabled(false);
 				kostka.setEnabled(true);
 				System.out.print(p.ile_domków("Saloniki"));
+				info.uaktualnij_informacje();
 			}
 		});
 		
@@ -229,22 +231,15 @@ public class Gamemaster {
 		
 		f.add(Budowanie);
 		f.add(handel);
-		f.add(dane_gracza);
 		f.add(wybor_gracza_do_handlu);
 		f.add(kostka);
 		f.add(dalej);
 		f.add(k.pokaz_kostke());
 		f.add(h.pokaz_budowanie());
 		f.add(b.pokaz_budowanie());
+		f.add(info.pokaz_informacje());
 		f.setVisible(true); 
 		
 	}
 	
-	void ustaw_dane_gracza(Gracz g)
-	{
-		dane_gracza.setText("<html><body><p align=\"center\">Aktualny gracz: " + g.numer_gracza() 
-		+ "<br/>" +"Pieniadze: " + g.ile_pieniedzy() + 
-		"<br/>lista w³asnosci: </p></body></html>");
-
-	}
 }

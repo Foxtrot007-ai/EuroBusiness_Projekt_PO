@@ -88,5 +88,18 @@ public int numer_gracza()
 {
 	 return index;
 }
+public String lista_wlasnosci()
+{
+	 int iter = 1;
+	 String temp = "<p align=\"center\">";
+	 for (String s1 : Lista_posiadlosci) {
+			temp += s1 + ", ";
+			if(iter % 3 == 0) temp += "<br/>";
+			iter++;
+		}	 
+	 temp += "</p>";
+	 return temp;
+	 
+}
 
 }

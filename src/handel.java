@@ -23,6 +23,7 @@ public class handel implements ActionListener{
 		public boolean koniec_handlu;	
 		private JButton aktualny;
 		private JButton nastepny;
+		private Informacje info;
 		
 		public JPanel pokaz_budowanie()
 		{
@@ -86,7 +87,7 @@ public class handel implements ActionListener{
 							drugi_gracz.zabierz_pieniadze(Integer.valueOf(wartosc2.getText()));
 							aktualny_gracz.zabierz_pieniadze(Integer.valueOf(wartosc1.getText()));
 						}
-	
+						info.uaktualnij_informacje();
 							
 				}
 			});
@@ -101,6 +102,7 @@ public class handel implements ActionListener{
 							koniec_handlu = true;
 							aktualny.setEnabled(false);
 							nastepny.setEnabled(true);
+						
 							f.setVisible(false);
 		
 				}
@@ -144,6 +146,11 @@ public class handel implements ActionListener{
 		public void ustaw_aktualnego_gracza(Gracz g)
 		{
 			aktualny_gracz = g;
+		}
+		
+		public void ustaw_informacje(Informacje i)
+		{
+			info = i;
 		}
 		
 		public void ustaw_gracza_do_handlu(Gracz g)

@@ -16,6 +16,7 @@ public class kostka implements ActionListener{
 		private Random generator; 
 		public boolean koniec_losowania;
 		
+		private Informacje info;
 		private JButton MyButton;
 		private JButton NextButton;
 		public JPanel pokaz_kostke()
@@ -54,6 +55,7 @@ public class kostka implements ActionListener{
 					aktualny_gracz.wykonaj_ruch(wylosowana);
 					b2.setEnabled(true);
 					b1.setEnabled(false);
+					info.uaktualnij_informacje();
 							
 				}
 			});
@@ -96,10 +98,14 @@ public class kostka implements ActionListener{
 			koniec_losowania = false;
 			f.setVisible(true);
 			b1.setEnabled(true);
+			b2.setEnabled(false);
 			wylosowana = 0;				
 		}
 		
-		
+		public void ustaw_informacje(Informacje i)
+		{
+			info = i;
+		}
 		public void ustaw_aktualnego_gracza(Gracz g)
 		{
 			aktualny_gracz = g;
