@@ -148,7 +148,7 @@ public class Decyzja implements ActionListener{
 				b1.setVisible(false);
 				b2.setVisible(false);
 				b3.setVisible(true);
-				decyzja1.setText("Zaplacono kare dla gracza: " + do_wymiany.numer_gracza());
+				decyzja1.setText("<html><body><p align=\"center\">Zaplacono kare dla gracza: " + do_wymiany.numer_gracza()+ "</p></body></html>");
 				
 						
 			}

@@ -240,6 +240,11 @@ public class Gamemaster {
 				kostka.setEnabled(true);
 				System.out.print(p.ile_domków("Saloniki"));
 				info.uaktualnij_informacje();
+				aktualny_gracz++;
+				k.ustaw_aktualnego_gracza(gracze[aktualny_gracz % 4]);
+				d.ustaw_aktualnego_gracza(gracze[aktualny_gracz % 4]);
+				h.ustaw_aktualnego_gracza(gracze[aktualny_gracz % 4]);
+				b.ustaw_aktualnego_gracza(gracze[aktualny_gracz % 4]);
 			}
 		});
 		
