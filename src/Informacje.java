@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -60,19 +61,19 @@ public class Informacje {
        
         
         informacje[0] = new JLabel();  
-        informacje[0].setBounds(100,0, 100,200);  
+        informacje[0].setBounds(120,0, 100,200);  
        
 	    
         informacje[1] = new JLabel();  
-        informacje[1].setBounds(100,120, 100,200);  
+        informacje[1].setBounds(320,0, 100,200);  
         
         
         informacje[2] = new JLabel();  
-        informacje[2].setBounds(100,240, 100,200);  
+        informacje[2].setBounds(120,240, 100,200);  
         
 	    
         informacje[3] = new JLabel();  
-        informacje[3].setBounds(100,360, 100,200);  
+        informacje[3].setBounds(320,240, 100,200);  
        
 	    
 		f.add(informacje[0]);

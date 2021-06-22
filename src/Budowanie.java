@@ -68,7 +68,7 @@ public class Budowanie implements ActionListener{
 			
 			wartosc3 = new JTextField();  
 			wartosc3.setBounds(100,200,100,20);  
-			wartosc3.setText("Cena jednego domku:");
+			wartosc3.setText("Cena domku:");
 			wartosc3.setEditable(false);
 		    
 			wartosc4 = new JTextField();  

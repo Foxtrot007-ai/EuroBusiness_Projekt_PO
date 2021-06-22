@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class Gamemaster {
 	private JButton Budowanie;
 	private JButton dalej;
 
+	
 
 	private List<JPanel> pola;
 	private boolean czy_rzut_kostka;
@@ -50,6 +52,11 @@ public class Gamemaster {
 		}while(gracze[aktualny_gracz % 4].czy_bankrut());
 		
 	}
+	
+	
+	
+	
+	
 	private void sprawdz_czy_banktur()
 	{
 		if(gracze[aktualny_gracz % 4].czy_bankrut())
@@ -186,7 +193,9 @@ public class Gamemaster {
 		b.ustaw_liste_pol(pola);
 		
 		
-		kostka.setBounds(610,90,100, 40);
+		
+		
+		kostka.setBounds(610,90 + 40,100, 40);
 		kostka.setEnabled(true);
 		kostka.addActionListener(new ActionListener()
 		{
@@ -196,17 +205,17 @@ public class Gamemaster {
 			}
 		});
 		
-		decyzja.setBounds(610,150,100, 40);
+		decyzja.setBounds(610,150 + 40,100, 40);
 		decyzja.setEnabled(false);
 		decyzja.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt) {
 				d.actionPerformed(evt);
-
+				
 			}
 		});
 	
-		handel.setBounds(610,210,100, 40);
+		handel.setBounds(610,210 + 40,100, 40);
 		handel.setEnabled(false);
 		handel.addActionListener(new ActionListener()
 		{
@@ -234,11 +243,11 @@ public class Gamemaster {
 			}
 		});
 		
-		wybor_gracza_do_handlu.setBounds(610,270,75,80);
+		wybor_gracza_do_handlu.setBounds(610,270 + 40,75,80);
 		wybor_gracza_do_handlu.setEnabled(true);
 		
 		
-		Budowanie.setBounds(610,390,100, 40);
+		Budowanie.setBounds(610,390 + 40,100, 40);
 		Budowanie.setEnabled(false);
 		Budowanie.addActionListener(new ActionListener()
 		{
@@ -249,7 +258,7 @@ public class Gamemaster {
 		});
 		
 		
-		dalej.setBounds(610,450,100, 40);
+		dalej.setBounds(610,450 + 40,100, 40);
 		dalej.setEnabled(false);
 		dalej.addActionListener(new ActionListener()
 		{
@@ -263,6 +272,7 @@ public class Gamemaster {
 				d.ustaw_aktualnego_gracza(gracze[aktualny_gracz % 4]);
 				h.ustaw_aktualnego_gracza(gracze[aktualny_gracz % 4]);
 				b.ustaw_aktualnego_gracza(gracze[aktualny_gracz % 4]);
+				
 			}
 		});
 		

@@ -71,9 +71,9 @@ public class handel implements ActionListener{
 			{
 				public void actionPerformed(ActionEvent evt) {
 						if((aktualny_gracz.czy_wlasciciel(miasto1.getText()) || miasto1.getText().equals(""))
-						&& aktualny_gracz.ile_pieniedzy() >= Integer.valueOf(wartosc1.getText())
+						&& (aktualny_gracz.ile_pieniedzy() >= Integer.valueOf(wartosc1.getText()) || Integer.valueOf(wartosc1.getText()) == 0)
 						&& (drugi_gracz.czy_wlasciciel(miasto2.getText()) || miasto2.getText().equals(""))
-						&& drugi_gracz.ile_pieniedzy() >= Integer.valueOf(wartosc2.getText()))
+						&& (drugi_gracz.ile_pieniedzy() >= Integer.valueOf(wartosc2.getText()) || Integer.valueOf(wartosc1.getText()) == 0))
 						{
 							drugi_gracz.dodaj_miasto(miasto1.getText());
 							aktualny_gracz.dodaj_miasto(miasto2.getText());
