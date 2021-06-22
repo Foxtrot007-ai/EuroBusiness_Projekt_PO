@@ -53,7 +53,7 @@ public void wykonaj_ruch(int ruchy)
 
 public boolean czy_bankrut()
 {
-	return ilosc_pieniedzy < 0 && Lista_posiadlosci.isEmpty();
+	return ilosc_pieniedzy < 0;
 }
 
 public boolean czy_wlasciciel(String miasto)
@@ -100,6 +100,14 @@ public String lista_wlasnosci()
 	 temp += "</p>";
 	 return temp;
 	 
+}
+
+public List<String> usun_wlasnosci()
+{
+	List<String> temp = new ArrayList<>();
+	temp.addAll(Lista_posiadlosci);
+	Lista_posiadlosci.clear();
+	return temp;
 }
 
 }

@@ -37,7 +37,10 @@ public class Pole {
  {
 	 ilosc_domkow++;
  }
- 
+ public void usun_wszystkie_domki()
+ {
+	 ilosc_domkow = 0;
+ }
  public void usun_domek()
  {
 	 ilosc_domkow--;

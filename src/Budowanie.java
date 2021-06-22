@@ -48,7 +48,7 @@ public class Budowanie implements ActionListener{
 			aktualny = b;
 			nastepny = d;
 			//this.domek = domek;
-			max_domkow = 4;
+			max_domkow = 8;
 			f = new JPanel();
 			nazwa_miasta = "";		
 			miasto1 = new JTextField();  
@@ -133,7 +133,7 @@ public class Budowanie implements ActionListener{
 							aktualny.setEnabled(false);
 							nastepny.setEnabled(true);
 							f.setVisible(false);
-							System.out.print(plansza.ile_domków("Saloniki"));
+							
 							uaktualnij_pola();
 						}
 	
@@ -187,17 +187,50 @@ public class Budowanie implements ActionListener{
 		private void uaktualnij_pola()
 		{
 			for (int i = 0; i < 40; i++) {
-				if(plansza.ile_domków(i) >= 1)	pola.get(i).getComponent(1).setVisible(true);
+				if(plansza.ile_domków(i) >= 1) {
+					pola.get(i).getComponent(1).setVisible(true);
+					pola.get(i).getComponent(1).setBackground(Color.green);
+				}
 				else pola.get(i).getComponent(1).setVisible(false);
 				
-				if(plansza.ile_domków(i) >= 2)	pola.get(i).getComponent(2).setVisible(true);
+				if(plansza.ile_domków(i) >= 2){
+					pola.get(i).getComponent(2).setVisible(true);
+					pola.get(i).getComponent(2).setBackground(Color.green);
+				}
 				else pola.get(i).getComponent(2).setVisible(false);
 				
-				if(plansza.ile_domków(i) >= 3)	pola.get(i).getComponent(3).setVisible(true);
+				if(plansza.ile_domków(i) >= 3){
+					pola.get(i).getComponent(3).setVisible(true);
+					pola.get(i).getComponent(3).setBackground(Color.green);
+				}
 				else pola.get(i).getComponent(3).setVisible(false);
 				
-				if(plansza.ile_domków(i) >= 4)	pola.get(i).getComponent(4).setVisible(true);
+				if(plansza.ile_domków(i) >= 4){
+					pola.get(i).getComponent(4).setVisible(true);
+					pola.get(i).getComponent(4).setBackground(Color.green);
+				}
 				else pola.get(i).getComponent(4).setVisible(false);
+				
+				if(plansza.ile_domków(i) >= 5){
+					
+					pola.get(i).getComponent(1).setBackground(Color.red);
+				}
+				
+				if(plansza.ile_domków(i) >= 6){
+					
+					pola.get(i).getComponent(2).setBackground(Color.red);
+				}
+				
+				if(plansza.ile_domków(i) >= 7){
+					
+					pola.get(i).getComponent(3).setBackground(Color.red);
+				}
+				
+				if(plansza.ile_domków(i) >= 8){
+					
+					pola.get(i).getComponent(4).setBackground(Color.red);
+				}
+				
 			}
 		}
 		

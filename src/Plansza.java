@@ -216,4 +216,12 @@ public class Plansza {
 		return plansza.get(i).nazwa_pola();
 	}
 	
+	public void zeruj_domki(String nazwa)
+	{
+		for (Pole pole : plansza) {
+			if(pole.nazwa_pola().compareTo(nazwa) == 0)
+			pole.usun_wszystkie_domki();
+		}
+	}
+	
 }

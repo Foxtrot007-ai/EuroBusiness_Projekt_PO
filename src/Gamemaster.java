@@ -36,10 +36,29 @@ public class Gamemaster {
 	private boolean czy_rzut_kostka;
 	private boolean czy_handel;
 	private boolean czy_Budowanie;
+
 	
 	private List<JPanel> panele_pol;
 	
-	
+	private void okresl_nastepnego_gracza()
+	{
+		int temp = aktualny_gracz;
+		
+		do
+		{
+			aktualny_gracz++;
+		}while(gracze[aktualny_gracz % 4].czy_bankrut());
+		
+	}
+	private void sprawdz_czy_banktur()
+	{
+		if(gracze[aktualny_gracz % 4].czy_bankrut())
+		{
+			for (String nazwa_pola : gracze[aktualny_gracz % 4].usun_wlasnosci()) {
+				p.zeruj_domki(nazwa_pola);
+			}
+		}
+	}
 	
 	
 	private void ustaw_pola()
@@ -100,6 +119,7 @@ public class Gamemaster {
 	
 	public Gamemaster()
 	{
+		
 		f = new JFrame();
 		f.setSize(1357,720);  
 		f.setLayout(null);  
@@ -112,9 +132,9 @@ public class Gamemaster {
 		gracze[2] = new Gracz(3000,liczba_pol,3);
 		gracze[3] = new Gracz(3000,liczba_pol,4);
 		
-		gracze[0].dodaj_miasto("Saloniki");
+	/*	gracze[0].dodaj_miasto("Saloniki");
 		gracze[0].dodaj_miasto("Ateny");
-		gracze[0].dodaj_miasto("Neapol");
+		gracze[0].dodaj_miasto("Neapol"); */
 		
 		p = new Plansza();
 	
@@ -165,7 +185,6 @@ public class Gamemaster {
 		ustaw_pola();
 		b.ustaw_liste_pol(pola);
 		
-		System.out.print(gracze[0].lista_wlasnosci());
 		
 		kostka.setBounds(610,90,100, 40);
 		kostka.setEnabled(true);
@@ -225,7 +244,6 @@ public class Gamemaster {
 		{
 			public void actionPerformed(ActionEvent evt) {
 				b.actionPerformed(evt);
-				System.out.print(p.ile_domków("Saloniki"));
 				
 			}
 		});
@@ -238,9 +256,9 @@ public class Gamemaster {
 			public void actionPerformed(ActionEvent evt) {
 				dalej.setEnabled(false);
 				kostka.setEnabled(true);
-				System.out.print(p.ile_domków("Saloniki"));
+				sprawdz_czy_banktur();
 				info.uaktualnij_informacje();
-				aktualny_gracz++;
+				okresl_nastepnego_gracza();
 				k.ustaw_aktualnego_gracza(gracze[aktualny_gracz % 4]);
 				d.ustaw_aktualnego_gracza(gracze[aktualny_gracz % 4]);
 				h.ustaw_aktualnego_gracza(gracze[aktualny_gracz % 4]);
